@@ -40,6 +40,9 @@ public class Main {
             }
         }
 
+        System.out.println("Hello World!!!");
+        System.out.println("Hey World!!!");
+        System.out.println("Bye World!!!!");
     }
 
 }
