@@ -5,6 +5,13 @@
  */
 package main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Felipe
@@ -16,8 +23,23 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        System.out.println("Hello World!!!");
+        File file = new File("./covid.csv");
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+
+            while (sc.hasNextLine()) {
+                System.out.println(sc.nextLine());
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (sc != null) {
+                sc.close();
+            }
+        }
+
     }
-    
+
 }
