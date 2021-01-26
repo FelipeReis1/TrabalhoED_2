@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,18 +27,25 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
-        String path = "./covid.csv";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line = br.readLine();
-            while (line != null) {
-                System.out.println(line);
-                line = br.readLine();
+        List<Entradas> listEntradas = new ArrayList<>();
+        BufferedReader br;
+        String caminhoCSV = "./brazil_covid19_cities.csv";
+   
+        try  {
+                br = new BufferedReader(new FileReader(caminhoCSV));
+                String line;           
+                String divisor = ",";
+                while ((line = br.readLine()) != null) {
+                    String[] coluna = line.split(divisor);
+                    listEntradas.add(new Entradas (coluna[coluna.length-4], coluna[coluna.length-5], coluna[coluna.length-6]));                   
+                    System.out.println("Cidade: " + listEntradas.get(listEntradas.size()-1).getCidade()+ " Estado: " + listEntradas.get(listEntradas.size()-1).getEstado()
+                            + " Data: " + listEntradas.get(listEntradas.size()-1).getData());  //Felipe e Fael
             }
 
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }       
     }
 }
+//proximo a fazer: algoritmos ordenaçao
+//proximo a fazer: ordenar por cidade/estado > ordenar por data > aplicar formula dos totais de casos
