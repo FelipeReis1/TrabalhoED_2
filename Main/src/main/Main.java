@@ -28,7 +28,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         List<Entradas> listEntradas = new ArrayList<>();
-        BufferedReader br;
+        BufferedReader br; 
         String caminhoCSV = "./brazil_covid19_cities.csv";
    
         try  {
@@ -47,5 +47,5 @@ public class Main {
         }       
     }
 }
-//proximo a fazer: algoritmos ordenaçao
+//proximo a fazer: algoritmos ordenaçaoo
 //proximo a fazer: ordenar por cidade/estado > ordenar por data > aplicar formula dos totais de casos
