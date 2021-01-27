@@ -60,5 +60,5 @@ public class Main {
         
     }
 }
-//proximo a fazer: algoritmos ordenaçaooo
+//proximo a fazer: algoritmos ordenaçaoooo
 //proximo a fazer: ordenar por cidade/estado > ordenar por data > aplicar formula dos totais de casos
