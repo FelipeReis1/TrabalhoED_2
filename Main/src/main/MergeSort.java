@@ -38,7 +38,7 @@ public class MergeSort {
         int j = meio + 1;
         int k = esq;
 
-        while (i <= meio && j <= dir) {
+        while (i < meio && j < dir) {
             if (helper.get(i).getCidade().compareTo(helper.get(j).getCidade()) < 0) {
                 entradas.set(k, helper.get(i));
                 i++;

@@ -16,7 +16,6 @@ import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.DateFormat;
-import javafx.scene.input.DataFormat;
 
 /**
  *

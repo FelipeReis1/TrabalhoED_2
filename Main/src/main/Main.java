@@ -8,10 +8,15 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -22,14 +27,28 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
 
-        String caminhoCSV = "./brazil_covid19_cities.csv";
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date dt_a = dt.parse("2021-04-07");
+        Date dt_b = dt.parse("2021-05-06");
 
-        DadosCovid dados = new DadosCovid(caminhoCSV);
-        MergeSort MS = new MergeSort();
-        MS.sort(dados.getEntradas());
+        int int_a = 1;
+        int int_b = 2;
 
+        String str_a = "ab";
+        String str_b = "bc";
+
+        Comparador comparador = new Comparador();
+        System.out.println(comparador.comparar(dt_a, dt_b, ">"));
+        System.out.println(comparador.comparar(int_a, int_b, "<"));
+        System.out.println(comparador.comparar(str_a, str_b, "<="));
+
+//        String caminhoCSV = "./brazil_covid19_cities.csv";
+//
+//        DadosCovid dados = new DadosCovid(caminhoCSV);
+//        MergeSort MS = new MergeSort();
+//        MS.sort(dados.getEntradas());
 //        int quantidade = 100;
 //        int[] vetor = new int[quantidade];
 //
