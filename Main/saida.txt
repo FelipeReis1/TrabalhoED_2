@@ -1,40 +1,80 @@
 Resultados MergeSort:
 
 Tamanho: 10000
-Comparações: 333935
-Movimentações: 277231
-Tempo de Execução: 0.009 s
+Comparações: 160232
+Movimentações: 133616
+Tempo de Execução: 0.021 s
 
 Tamanho: 50000
-Comparações: 1901905
-Movimentações: 1618927
-Tempo de Execução: 0.045 s
+Comparações: 917609
+Movimentações: 784464
+Tempo de Execução: 0.037 s
 
 Tamanho: 100000
-Comparações: 4004018
-Movimentações: 3437855
-Tempo de Execução: 0.091 s
+Comparações: 1935312
+Movimentações: 1668928
+Tempo de Execução: 0.081 s
 
 Tamanho: 500000
-Comparações: 22310762
-Movimentações: 19451423
-Tempo de Execução: 0.558 s
+Comparações: 10836006
+Movimentações: 9475712
+Tempo de Execução: 0.502 s
 
 Tamanho: 1000000
-Comparações: 46622004
-Movimentações: 40902847
-Tempo de Execução: 1.139 s
+Comparações: 22672209
+Movimentações: 19951424
+Tempo de Execução: 0.918 s
 
 Totais MergeSort:
 
 Tamanho: 1660000
-Comparações: 7.5172624E7
-Movimentações: 6.5688284E7
-Tempos: 1.842 s
+Comparações: 3.6521368E7
+Movimentações: 3.2014144E7
+Tempos: 1.559 s
 
 Médias MergeSort por Registro:
 
-Comparações: 45.284714
-Movimentações: 39.571255
-Tempos: 0.0011096386 s
+Média de Comparações: 22.000824
+Média de Movimentações: 19.28563
+Média de tempo: 9.391566E-4 s
+
+Resultados QuickSort:
+
+Tamanho: 10000
+Comparações: 84658248
+Movimentações: 21003797
+Tempo de Execução: 0.009 s
+
+Tamanho: 50000
+Comparações: 85893073
+Movimentações: 21241569
+Tempo de Execução: 0.056 s
+
+Tamanho: 100000
+Comparações: 88040651
+Movimentações: 21773880
+Tempo de Execução: 0.087 s
+
+Tamanho: 500000
+Comparações: 99767167
+Movimentações: 25015129
+Tempo de Execução: 0.549 s
+
+Tamanho: 1000000
+Comparações: 125870176
+Movimentações: 31985361
+Tempo de Execução: 1.242 s
+
+Totais MergeSort:
+
+Tamanho: 1660000
+Comparações: 4.84229312E8
+Movimentações: 1.21019736E8
+Tempos: 1.943 s
+
+Médias MergeSort por Registro:
+
+Média de Comparações: 291.7044
+Média de Movimentações: 72.90346
+Média de tempo: 0.0011704819 s
 

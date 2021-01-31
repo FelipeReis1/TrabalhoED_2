@@ -12,12 +12,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.DateFormat;
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  *
@@ -136,11 +133,10 @@ public class DadosCovid {
         CompareCidade compara_cidade = new CompareCidade();
         CompareDatas compara_dt_confirmacao = new CompareDatas();
 
-        Collections.shuffle(this.entradas);
-        System.out.println("Embaralhando Entradas.");
         System.out.println("Ordenando por par Estado-Cidade");
 
         MergeSort MS = new MergeSort();
+//        Quicksort MS = new Quicksort();
 
         MS.sort(this.entradas, compara_estado);
         for (int i = 0; i < this.entradas.size(); i++) {

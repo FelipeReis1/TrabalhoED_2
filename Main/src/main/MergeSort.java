@@ -6,7 +6,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -17,18 +16,16 @@ public class MergeSort {
     private long comparacao = 0;
     private long movimentacao = 0;
 
-    Comparador comparador = new Comparador();
+//    Comparador comparador = new Comparador();
 
     protected void sort(ArrayList<DadosCovid.Entrada> entradas, Comparadores sortBy) {
         sort(entradas, 0, entradas.size() - 1, sortBy);
     }
 
     protected void sort(ArrayList<DadosCovid.Entrada> entradas, int esq, int dir, Comparadores sortBy) {
-        comparacao++;
         if (esq >= dir) {
             return;
         } else {
-            movimentacao++;
             int meio = (esq + dir) / 2;
             sort(entradas, esq, meio, sortBy);
             sort(entradas, meio + 1, dir, sortBy);
@@ -47,16 +44,10 @@ public class MergeSort {
         DadosCovid.Entrada D[] = new DadosCovid.Entrada[n2];
 
         //Preenche os arrays temporários
-        comparacao++;
         for (int i = 0; i < n1; i++) {
-            comparacao++;
-            movimentacao++;
             E[i] = entradas.get(esq + i);
         }
-        comparacao++;
         for (int j = 0; j < n2; j++) {
-            comparacao++;
-            movimentacao++;
             D[j] = entradas.get(meio + 1 + j);
         }
 

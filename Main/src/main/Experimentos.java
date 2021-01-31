@@ -20,6 +20,57 @@ class Experimentos {
     private long comparacoes, movimentacoes;
     private long tempoFinal;
 
+    public Experimentos(DadosCovid dados, int N) {
+        ArrayList<DadosCovid.Entrada> temp = dados.getEntradas();
+        Collections.shuffle(temp);
+        this.amostras = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            this.amostras.add(temp.get(i));
+        }
+        this.N = N;
+    }
+
+    public void executeQuickSort() {
+        Quicksort QS = new Quicksort();
+        comparacoes = 0;
+        movimentacoes = 0;
+        long startTime = System.currentTimeMillis();
+        CompareNumeroCasos compara_numero_casos = new CompareNumeroCasos();
+        QS.sort(this.amostras, compara_numero_casos);
+        comparacoes = QS.getComparacao();
+        movimentacoes = QS.getMovimentacao();
+        System.out.println("Comparações: " + this.comparacoes);
+        System.out.println("Movimentações: " + this.movimentacoes);
+        tempoFinal = System.currentTimeMillis() - startTime;
+        System.out.println("Tempo: " + (float) (this.tempoFinal) / 1000.0 + " segundos");
+    }
+
+    public void executeHeapSort() {
+        comparacoes = 0;
+        movimentacoes = 0;
+        long startTime = System.currentTimeMillis();
+        // heapsort aqui
+        tempoFinal = System.currentTimeMillis() - startTime;
+    }
+
+    public void executeMergeSort() {
+        MergeSort MSE = new MergeSort();
+        comparacoes = 0;
+        movimentacoes = 0;
+        long startTime = System.currentTimeMillis();
+        CompareNumeroCasos compara_numero_casos = new CompareNumeroCasos();
+
+        System.out.println("Experimenting merge sort for N=" + this.N);
+
+        MSE.sort(this.amostras, compara_numero_casos);
+        comparacoes = MSE.getComparacao();
+        movimentacoes = MSE.getMovimentacao();
+        System.out.println("Comparações: " + this.comparacoes);
+        System.out.println("Movimentações: " + this.movimentacoes);
+        tempoFinal = System.currentTimeMillis() - startTime;
+        System.out.println("Tempo: " + (float) (this.tempoFinal) / 1000.0 + " segundos");
+    }
+
     public void setN(int N) {
         this.N = N;
     }
@@ -58,49 +109,6 @@ class Experimentos {
 
     public long getTempo() {
         return tempoFinal;
-    }
-
-    public Experimentos(DadosCovid dados, int N) {
-        ArrayList<DadosCovid.Entrada> temp = dados.getEntradas();
-        Collections.shuffle(temp);
-        this.amostras = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            this.amostras.add(temp.get(i));
-        }
-        this.N = N;
-    }
-
-    public void executeQuickSort() {
-        comparacoes = 0;
-        movimentacoes = 0;
-        long startTime = System.currentTimeMillis();
-        // quicksort aqui
-        tempoFinal = System.currentTimeMillis() - startTime;
-    }
-
-    public void executeHeapSort() {
-        comparacoes = 0;
-        movimentacoes = 0;
-        long startTime = System.currentTimeMillis();
-        // heapsort aqui
-        tempoFinal = System.currentTimeMillis() - startTime;
-    }
-
-    public void executeMergeSort() {
-        MergeSort MSE = new MergeSort();
-        comparacoes = 0;
-        movimentacoes = 0;
-        long startTime = System.currentTimeMillis();
-        CompareNumeroCasos compara_numero_casos = new CompareNumeroCasos();
-
-        System.out.println("Experimenting merge sort for N=" + this.N);
-        MSE.sort(this.amostras, compara_numero_casos);
-        comparacoes = MSE.getComparacao();
-        movimentacoes = MSE.getMovimentacao();
-        System.out.println("Comparações: " + this.comparacoes);
-        System.out.println("Movimentações: " + this.movimentacoes);
-        tempoFinal = System.currentTimeMillis() - startTime;
-        System.out.println("Tempo: " + (float) (this.tempoFinal) / 1000.0 + " segundos");
     }
 
 }
