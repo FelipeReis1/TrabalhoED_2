@@ -58,3 +58,50 @@ public class Comparador {
         return false;
     }
 }
+
+interface Comparadores {
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b);
+}
+
+class CompareEstado implements Comparadores {
+
+    Comparador comparador = new Comparador();
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+//        return comparador.comparar(a.getEstado() + a.getCidade(), b.getEstado() + a.getCidade(), "<");
+        return a.getEstado().compareTo(b.getEstado()) < 0;
+    }
+}
+
+class CompareCidade implements Comparadores {
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getCidade().compareTo(b.getCidade()) < 0;
+    }
+}
+
+class CompareDatas implements Comparadores {
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getDtConfirmacao().before(b.getDtConfirmacao());
+    }
+}
+
+class CompareNumeroCasos implements Comparadores {
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return (a.getNumeroCasos() < b.getNumeroCasos());
+    }
+}
+
+//
+//class CompareEstadoCidade implements Comparadores {
+//
+//    Comparador comparador = new Comparador();
+//
+//    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+////        return comparador.comparar(a.getEstado() + a.getCidade(), b.getEstado() + a.getCidade(), "<");
+//        return a.getEstado().compareTo(b.getEstado()) < 0;
+//    }
+//}

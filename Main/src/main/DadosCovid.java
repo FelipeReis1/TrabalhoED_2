@@ -16,6 +16,8 @@ import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.DateFormat;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -94,7 +96,7 @@ public class DadosCovid {
     }
 
     private void Carregamento() throws IOException {
-        List<String> registros = new ArrayList<>();
+        List<String> registros = new ArrayList<>(); /// ???? 
         int i = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(this.dataset))) {
             String row;
@@ -119,16 +121,51 @@ public class DadosCovid {
     }
 
     private void PreProcessamento() {
-//        MergeSort.sort(this.entradas, comp_estados);
-//        for (int i = 0; 1 < entradas.size(); i++) {
-//            int j = i + 1;
-//            while (this.entradas.get(j).getEstado().equals(this.entradas.get(i).getEstado())) {                
-//                j++;
-//            }
-//            MergeSort.sort(this.entradas, i,j, comp_cidades);
-//        }
-//        MergeSort.sort(this.entradas, comp_data);
+        System.out.println("Pré-processamento dos dados...");
 
+        long tempoInicial = System.currentTimeMillis();
+
+        CompareEstado compara_estado = new CompareEstado();
+        CompareCidade compara_cidade = new CompareCidade();
+        CompareDatas compara_dt_confirmacao = new CompareDatas();
+
+        Collections.shuffle(this.entradas);
+        System.out.println("Embaralhando Entradas.");
+        System.out.println("Ordenando por par Estado-Cidade");
+
+        MergeSort MS = new MergeSort();
+
+        MS.sort(this.entradas, compara_estado);
+        for (int i = 0; i < this.entradas.size(); i++) {
+            int j = i + 1;
+            while ((j < this.entradas.size()) && this.entradas.get(j).getEstado().equals(this.entradas.get(i).getEstado())) {
+                j++;
+            }
+            if (j < this.entradas.size()) {
+                MS.sort(this.entradas, i, j, compara_cidade);
+            }
+            i = j;
+        }
+        System.out.println("Dados ordenados por par Estado-Cidade");
+
+        System.out.println("Ordenando por data de confirmação");
+        for (int i = 0; i < this.entradas.size(); i++) {
+            int j = i + 1;
+            while ((j < this.entradas.size()) && this.entradas.get(j).getCidade().equals(this.entradas.get(i).getCidade())) {
+                j++;
+            }
+            if (j < this.entradas.size()) {
+//                MS.sort(this.entradas, i, j, compara_cidade);
+                MS.sort(this.entradas, i, j,compara_dt_confirmacao);
+            }
+            i = j;
+        }
+        System.out.println("Dados ordenados por data de confirmação");
+
+        long tempoFinal = System.currentTimeMillis() - tempoInicial;
+
+        System.out.println("Dados Processados.");
+        System.out.println("Tempo total: " + tempoFinal + "s\n");
     }
 
     public void Save(String file_name) throws IOException {

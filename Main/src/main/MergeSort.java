@@ -14,51 +14,100 @@ import java.util.List;
  */
 public class MergeSort {
 
-    protected void sort(ArrayList<DadosCovid.Entrada> entradas) {
-        sort(entradas, 0, entradas.size() - 1);
+    private long comparacao = 0;
+    private long movimentacao = 0;
+
+    Comparador comparador = new Comparador();
+
+    protected void sort(ArrayList<DadosCovid.Entrada> entradas, Comparadores sortBy) {
+        sort(entradas, 0, entradas.size() - 1, sortBy);
     }
 
-    private void sort(ArrayList<DadosCovid.Entrada> entradas, int esq, int dir) {
+    protected void sort(ArrayList<DadosCovid.Entrada> entradas, int esq, int dir, Comparadores sortBy) {
+        comparacao++;
         if (esq >= dir) {
             return;
         } else {
+
             int meio = (esq + dir) / 2;
-            sort(entradas, esq, meio);
-            sort(entradas, meio + 1, dir);
+            sort(entradas, esq, meio, sortBy);
+            sort(entradas, meio + 1, dir, sortBy);
 
-            merge(entradas, esq, meio, dir);
-
+            merge(entradas, esq, meio, dir, sortBy);
         }
     }
 
-    public void merge(ArrayList<DadosCovid.Entrada> entradas, int esq, int meio, int dir) {
-        List<DadosCovid.Entrada> helper = entradas;
+    public void merge(ArrayList<DadosCovid.Entrada> entradas, int esq, int meio, int dir, Comparadores sortBy) {
+        // Seta tamanho dos subarrays 
+        int n1 = meio - esq + 1;
+        int n2 = dir - meio;
 
-        int i = esq;
-        int j = meio + 1;
+        // Instancia arrays temporários
+        DadosCovid.Entrada E[] = new DadosCovid.Entrada[n1];
+        DadosCovid.Entrada D[] = new DadosCovid.Entrada[n2];
+
+        //Preenche os arrays temporários
+        comparacao++;
+        for (int i = 0; i < n1; i++) {
+            comparacao++;
+            E[i] = entradas.get(esq + i);
+        }
+        comparacao++;
+        for (int j = 0; j < n2; j++) {
+            comparacao++;
+            D[j] = entradas.get(meio + 1 + j);
+        }
+
+        // Faz Merge nos Arrays temporários
+        // Indices iniciais dos subarrays
+        int i = 0, j = 0;
+
+        // Índice inicial do array mesclado 
         int k = esq;
-
-        while (i < meio && j < dir) {
-            if (helper.get(i).getCidade().compareTo(helper.get(j).getCidade()) < 0) {
-                entradas.set(k, helper.get(i));
+        comparacao += 2;
+        while (i < n1 && j < n2) {
+            comparacao++;
+            if (sortBy.comparar(E[i], D[j])) {
+                entradas.set(k, E[i]);
                 i++;
-
             } else {
-                entradas.set(k, helper.get(j));
+                entradas.set(k, D[j]);
                 j++;
             }
             k++;
         }
-        while (j != dir) {
-            entradas.set(k, helper.get(j));
-            k++;
-            j++;
-        }
-        while (i != meio) {
-            entradas.set(k, helper.get(i));
-            k++;
+
+        // Copia elementos restantes do subarray da Esquerda
+        comparacao++;
+        while (i < n1) {
+            entradas.set(k, E[i]);
             i++;
+            k++;
         }
+
+        // Copia elementos restantes do subarray da Direita
+        comparacao++;
+        while (j < n2) {
+            entradas.set(k, D[j]);
+            j++;
+            k++;
+        }
+    }
+
+    public long getComparacao() {
+        return comparacao;
+    }
+
+    public void setComparacao(int comparacao) {
+        this.comparacao = comparacao;
+    }
+
+    public long getMovimentacao() {
+        return movimentacao;
+    }
+
+    public void setMovimentacao(int movimentacao) {
+        this.movimentacao = movimentacao;
     }
 
 }
