@@ -28,7 +28,7 @@ public class MergeSort {
         if (esq >= dir) {
             return;
         } else {
-
+            movimentacao++;
             int meio = (esq + dir) / 2;
             sort(entradas, esq, meio, sortBy);
             sort(entradas, meio + 1, dir, sortBy);
@@ -50,11 +50,13 @@ public class MergeSort {
         comparacao++;
         for (int i = 0; i < n1; i++) {
             comparacao++;
+            movimentacao++;
             E[i] = entradas.get(esq + i);
         }
         comparacao++;
         for (int j = 0; j < n2; j++) {
             comparacao++;
+            movimentacao++;
             D[j] = entradas.get(meio + 1 + j);
         }
 
@@ -68,9 +70,11 @@ public class MergeSort {
         while (i < n1 && j < n2) {
             comparacao++;
             if (sortBy.comparar(E[i], D[j])) {
+                movimentacao++;
                 entradas.set(k, E[i]);
                 i++;
             } else {
+                movimentacao++;
                 entradas.set(k, D[j]);
                 j++;
             }
@@ -80,6 +84,7 @@ public class MergeSort {
         // Copia elementos restantes do subarray da Esquerda
         comparacao++;
         while (i < n1) {
+            movimentacao++;
             entradas.set(k, E[i]);
             i++;
             k++;
@@ -88,6 +93,7 @@ public class MergeSort {
         // Copia elementos restantes do subarray da Direita
         comparacao++;
         while (j < n2) {
+            movimentacao++;
             entradas.set(k, D[j]);
             j++;
             k++;

@@ -79,10 +79,10 @@ public class Main {
         arquivo_saida.append("Movimentações: ").append(media_movimentacoes).append("\n");
         arquivo_saida.append("Tempos: ").append((float)media_tempo/1000).append(" s").append("\n\n");
 
-        arquivo_saida.append("Médias MergeSort:\n\n");
-        arquivo_saida.append("Comparações: ").append(media_comparacoes/tam).append("\n");
-        arquivo_saida.append("Movimentações: ").append(media_movimentacoes/tam).append("\n");
-        arquivo_saida.append("Tempos: ").append(media_tempo/tam).append("\n\n");
+        arquivo_saida.append("Médias MergeSort por Registro:\n\n");
+        arquivo_saida.append("Média de Comparações: ").append(media_comparacoes/tam).append("\n");
+        arquivo_saida.append("Média de Movimentações: ").append(media_movimentacoes/tam).append("\n");
+        arquivo_saida.append("Média de tempo: ").append(media_tempo/tam).append(" s\n\n");
 
         comparacoes.clear();
         movimentacoes.clear();
