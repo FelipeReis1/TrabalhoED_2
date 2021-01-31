@@ -35,7 +35,16 @@ public class DadosCovid {
         private int cod_cidade;
         private int numeroObitos;
         private int numeroCasos;
+        private int numeroCasosDiario;
         private Date dt_confirmacao;
+
+        public int getNumeroCasosDiario() {
+            return numeroCasosDiario;
+        }
+
+        public void setNumeroCasosDiario(int numeroCasosDiario) {
+            this.numeroCasosDiario = numeroCasosDiario;
+        }
 
         public String getCidade() {
             return cidade;
@@ -96,22 +105,20 @@ public class DadosCovid {
     }
 
     private void Carregamento() throws IOException {
-        List<String> registros = new ArrayList<>(); /// ???? 
         int i = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(this.dataset))) {
             String row;
+            br.readLine();
             while ((row = br.readLine()) != null) {
-                if (i > 0) {
-                    Entrada entrada = new Entrada();
-                    String[] dados = row.split(",");
-                    entrada.setDtConfirmacao(new SimpleDateFormat("yyyy-MM-dd").parse(dados[0]));
-                    entrada.setEstado(dados[1]);
-                    entrada.setCidade(dados[2]);
-                    entrada.setCodCidade((int) Float.parseFloat(dados[3]));
-                    entrada.setNumeroCasos(Integer.parseInt(dados[4]));
-                    entrada.setNumeroObitos(Integer.parseInt(dados[5]));
-                    this.entradas.add(entrada);
-                }
+                Entrada entrada = new Entrada();
+                String[] dados = row.split(",");
+                entrada.setDtConfirmacao(new SimpleDateFormat("yyyy-MM-dd").parse(dados[0]));
+                entrada.setEstado(dados[1]);
+                entrada.setCidade(dados[2]);
+                entrada.setCodCidade((int) Float.parseFloat(dados[3]));
+                entrada.setNumeroCasos(Integer.parseInt(dados[4]));
+                entrada.setNumeroObitos(Integer.parseInt(dados[5]));
+                this.entradas.add(entrada);
                 i++;
             }
 
@@ -141,8 +148,8 @@ public class DadosCovid {
             while ((j < this.entradas.size()) && this.entradas.get(j).getEstado().equals(this.entradas.get(i).getEstado())) {
                 j++;
             }
-            if (j < this.entradas.size()) {
-                MS.sort(this.entradas, i, j, compara_cidade);
+            if (j <= this.entradas.size()) {
+                MS.sort(this.entradas, i, j - 1, compara_cidade);
             }
             i = j;
         }
@@ -151,12 +158,29 @@ public class DadosCovid {
         System.out.println("Ordenando por data de confirmação");
         for (int i = 0; i < this.entradas.size(); i++) {
             int j = i + 1;
+
             while ((j < this.entradas.size()) && this.entradas.get(j).getCidade().equals(this.entradas.get(i).getCidade())) {
                 j++;
             }
-            if (j < this.entradas.size()) {
+            if (j <= this.entradas.size()) {
 //                MS.sort(this.entradas, i, j, compara_cidade);
-                MS.sort(this.entradas, i, j,compara_dt_confirmacao);
+                MS.sort(this.entradas, i, j - 1, compara_dt_confirmacao);
+            }
+            i = j-1;
+        }
+        System.out.println("Dados ordenados por data de confirmação");
+
+        System.out.println("Calculando casos Diários");
+        for (int i = 0; i < this.entradas.size(); i++) {
+            int j = i + 1;
+
+            while ((j < this.entradas.size()) && this.entradas.get(j).getCidade().equals(this.entradas.get(i).getCidade())) {
+                if (j-1 == i) {
+                    this.entradas.get(j-1).setNumeroCasosDiario(this.entradas.get(j-1).getNumeroCasos());
+                } else {
+                    this.entradas.get(j-1).setNumeroCasosDiario(this.entradas.get(j-1).getNumeroCasos() - this.entradas.get(j-2).getNumeroCasos());
+                }
+                j++;
             }
             i = j;
         }
@@ -174,7 +198,7 @@ public class DadosCovid {
 
         FileWriter fw = new FileWriter(file);
 
-        fw.write("date,state,name,code,cases,deaths\n");
+        fw.write("date,state,name,code,cases,dailyCases,deaths\n");
         for (Entrada entrada : entradas) {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String row = df.format(
@@ -183,6 +207,7 @@ public class DadosCovid {
                     + entrada.getCidade() + ","
                     + entrada.getCodCidade() + ","
                     + entrada.getNumeroCasos() + ","
+                    + entrada.getNumeroCasosDiario() + ","
                     + entrada.getNumeroObitos() + "\n";
             fw.write(row);
         }
