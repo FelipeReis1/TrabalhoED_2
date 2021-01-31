@@ -163,10 +163,9 @@ public class DadosCovid {
                 j++;
             }
             if (j <= this.entradas.size()) {
-//                MS.sort(this.entradas, i, j, compara_cidade);
                 MS.sort(this.entradas, i, j - 1, compara_dt_confirmacao);
             }
-            i = j-1;
+            i = j - 1;
         }
         System.out.println("Dados ordenados por data de confirmação");
 
@@ -175,10 +174,10 @@ public class DadosCovid {
             int j = i + 1;
 
             while ((j < this.entradas.size()) && this.entradas.get(j).getCidade().equals(this.entradas.get(i).getCidade())) {
-                if (j-1 == i) {
-                    this.entradas.get(j-1).setNumeroCasosDiario(this.entradas.get(j-1).getNumeroCasos());
+                if (j - 1 == i) {
+                    this.entradas.get(j - 1).setNumeroCasosDiario(this.entradas.get(j - 1).getNumeroCasos());
                 } else {
-                    this.entradas.get(j-1).setNumeroCasosDiario(this.entradas.get(j-1).getNumeroCasos() - this.entradas.get(j-2).getNumeroCasos());
+                    this.entradas.get(j - 1).setNumeroCasosDiario(this.entradas.get(j - 1).getNumeroCasos() - this.entradas.get(j - 2).getNumeroCasos());
                 }
                 j++;
             }
