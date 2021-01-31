@@ -1,40 +1,40 @@
 Resultados MergeSort:
 
 Tamanho: 10000
-Comparações: 333930
+Comparações: 333858
 Movimentações: 0
-Tempo de Execução: 0.006 s
+Tempo de Execução: 0.004 s
 
 Tamanho: 50000
-Comparações: 1901713
+Comparações: 1902156
 Movimentações: 0
-Tempo de Execução: 0.033 s
+Tempo de Execução: 0.022 s
 
 Tamanho: 100000
-Comparações: 4004113
+Comparações: 4004182
 Movimentações: 0
-Tempo de Execução: 0.081 s
+Tempo de Execução: 0.048 s
 
 Tamanho: 500000
-Comparações: 22311025
+Comparações: 22311362
 Movimentações: 0
-Tempo de Execução: 0.512 s
+Tempo de Execução: 0.325 s
 
 Tamanho: 1000000
-Comparações: 46622949
+Comparações: 46622308
 Movimentações: 0
-Tempo de Execução: 1.137 s
+Tempo de Execução: 0.721 s
 
 Totais MergeSort:
 
 Tamanho: 1660000
-Comparações: 7.5173728E7
+Comparações: 7.5173864E7
 Movimentações: 0.0
-Tempos: 1.769 s
+Tempos: 1.12 s
 
 Médias MergeSort:
 
-Comparações: 45.285378
+Comparações: 45.28546
 Movimentações: 0.0
-Tempos: 0.0010656626
+Tempos: 6.746988E-4
 

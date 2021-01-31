@@ -62,7 +62,7 @@ public class Main {
             arquivo_saida.append("Tamanho: ").append(tamanho).append("\n");
             arquivo_saida.append("Comparações: ").append(exp.getComparacoes()).append("\n");
             arquivo_saida.append("Movimentações: ").append(exp.getMovimentacoes()).append("\n");
-            arquivo_saida.append("Tempo de Execução: " + (float)exp.getTempo()/1000 + " s\n\n");
+            arquivo_saida.append("Tempo de Execução: ").append((float)exp.getTempo()/1000).append(" s\n\n");
         }
         float media_comparacoes = 0, media_movimentacoes = 0, media_tempo = 0;
         int tam = 0;
@@ -77,12 +77,12 @@ public class Main {
         arquivo_saida.append("Tamanho: ").append(tam).append("\n");
         arquivo_saida.append("Comparações: ").append(media_comparacoes).append("\n");
         arquivo_saida.append("Movimentações: ").append(media_movimentacoes).append("\n");
-        arquivo_saida.append("Tempos: ").append((float)media_tempo/1000 +" s").append("\n\n");
+        arquivo_saida.append("Tempos: ").append((float)media_tempo/1000).append(" s").append("\n\n");
 
         arquivo_saida.append("Médias MergeSort:\n\n");
-        arquivo_saida.append("Comparações: " + media_comparacoes/tam + "\n");
-        arquivo_saida.append("Movimentações: " + media_movimentacoes/tam + "\n");
-        arquivo_saida.append("Tempos: " + media_tempo/tam + "\n\n");
+        arquivo_saida.append("Comparações: ").append(media_comparacoes/tam).append("\n");
+        arquivo_saida.append("Movimentações: ").append(media_movimentacoes/tam).append("\n");
+        arquivo_saida.append("Tempos: ").append(media_tempo/tam).append("\n\n");
 
         comparacoes.clear();
         movimentacoes.clear();
@@ -93,7 +93,7 @@ public class Main {
         
         save("saida", arquivo_saida);
         long tempo_final = System.currentTimeMillis() - tempo_inicial;
-        arquivo_saida.append("Tempo Total: " + (float)tempo_final/1000 + "s\n\n");
+        arquivo_saida.append("Tempo Total: ").append((float)tempo_final/1000).append("s\n\n");
         System.out.println("Time elapsed: " + tempo_final/1000 + " seconds");
     }
 
