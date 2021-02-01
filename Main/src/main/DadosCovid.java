@@ -136,6 +136,7 @@ public class DadosCovid {
         System.out.println("Ordenando por par Estado-Cidade");
 
         MergeSort MS = new MergeSort();
+//        Heapsort MS = new Heapsort();
 //        Quicksort MS = new Quicksort();
 
         MS.sort(this.entradas, compara_estado);
@@ -179,12 +180,11 @@ public class DadosCovid {
             }
             i = j;
         }
-        System.out.println("Dados ordenados por data de confirmação");
 
         long tempoFinal = System.currentTimeMillis() - tempoInicial;
 
         System.out.println("Dados Processados.");
-        System.out.println("Tempo total: " + tempoFinal + "s\n");
+        System.out.println("Tempo total: " + tempoFinal + "s\n\n\n");
     }
 
     public void Save(String file_name) throws IOException {

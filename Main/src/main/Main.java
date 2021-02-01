@@ -30,7 +30,7 @@ public class Main {
 
         long tempo_inicial = System.currentTimeMillis();
 
-        String caminhoCSV = "brazil_covid19_cities.csv";
+        String caminhoCSV = "../brazil_covid19_cities.csv";
         DadosCovid dados = new DadosCovid(caminhoCSV);
 
         //ver se da pra melhorar
@@ -106,13 +106,13 @@ public class Main {
             media_tempo += tempos.get(i);
             tam += tamanhos[i];
         }
-        arquivo_saida.append("Totais MergeSort:\n\n");
+        arquivo_saida.append("Totais QuickSort:\n\n");
         arquivo_saida.append("Tamanho: ").append(tam).append("\n");
         arquivo_saida.append("Comparações: ").append((float)media_comparacoes).append("\n");
         arquivo_saida.append("Movimentações: ").append((float)media_movimentacoes).append("\n");
         arquivo_saida.append("Tempos: ").append((float) media_tempo / 1000).append(" s").append("\n\n");
 
-        arquivo_saida.append("Médias MergeSort por Registro:\n\n");
+        arquivo_saida.append("Médias QuickSort por Registro:\n\n");
         arquivo_saida.append("Média de Comparações: ").append((float)media_comparacoes / tam).append("\n");
         arquivo_saida.append("Média de Movimentações: ").append((float)media_movimentacoes / tam).append("\n");
         arquivo_saida.append("Média de tempo: ").append((float)media_tempo / tam).append(" s\n\n");

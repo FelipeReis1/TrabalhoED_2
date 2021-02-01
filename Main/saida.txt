@@ -1,80 +1,80 @@
 Resultados MergeSort:
 
 Tamanho: 10000
-Comparações: 160232
+Comparações: 160350
 Movimentações: 133616
-Tempo de Execução: 0.021 s
+Tempo de Execução: 0.008 s
 
 Tamanho: 50000
-Comparações: 917609
+Comparações: 917476
 Movimentações: 784464
-Tempo de Execução: 0.037 s
+Tempo de Execução: 0.033 s
 
 Tamanho: 100000
-Comparações: 1935312
+Comparações: 1935377
 Movimentações: 1668928
-Tempo de Execução: 0.081 s
+Tempo de Execução: 0.084 s
 
 Tamanho: 500000
-Comparações: 10836006
+Comparações: 10835283
 Movimentações: 9475712
-Tempo de Execução: 0.502 s
+Tempo de Execução: 0.554 s
 
 Tamanho: 1000000
-Comparações: 22672209
+Comparações: 22671083
 Movimentações: 19951424
-Tempo de Execução: 0.918 s
+Tempo de Execução: 1.129 s
 
 Totais MergeSort:
 
 Tamanho: 1660000
-Comparações: 3.6521368E7
+Comparações: 3.6519568E7
 Movimentações: 3.2014144E7
-Tempos: 1.559 s
+Tempos: 1.808 s
 
 Médias MergeSort por Registro:
 
-Média de Comparações: 22.000824
+Média de Comparações: 21.99974
 Média de Movimentações: 19.28563
-Média de tempo: 9.391566E-4 s
+Média de tempo: 0.0010891566 s
 
 Resultados QuickSort:
 
 Tamanho: 10000
-Comparações: 84658248
-Movimentações: 21003797
-Tempo de Execução: 0.009 s
+Comparações: 172555
+Movimentações: 37779
+Tempo de Execução: 0.016 s
 
 Tamanho: 50000
-Comparações: 85893073
-Movimentações: 21241569
-Tempo de Execução: 0.056 s
+Comparações: 1191207
+Movimentações: 280730
+Tempo de Execução: 0.021 s
 
 Tamanho: 100000
-Comparações: 88040651
-Movimentações: 21773880
-Tempo de Execução: 0.087 s
+Comparações: 3397220
+Movimentações: 812278
+Tempo de Execução: 0.07 s
 
 Tamanho: 500000
-Comparações: 99767167
-Movimentações: 25015129
-Tempo de Execução: 0.549 s
+Comparações: 15504021
+Movimentações: 4033526
+Tempo de Execução: 0.431 s
 
 Tamanho: 1000000
-Comparações: 125870176
-Movimentações: 31985361
-Tempo de Execução: 1.242 s
+Comparações: 39330846
+Movimentações: 11002061
+Tempo de Execução: 0.619 s
 
 Totais MergeSort:
 
 Tamanho: 1660000
-Comparações: 4.84229312E8
-Movimentações: 1.21019736E8
-Tempos: 1.943 s
+Comparações: 5.9595848E7
+Movimentações: 1.6166374E7
+Tempos: 1.157 s
 
 Médias MergeSort por Registro:
 
-Média de Comparações: 291.7044
-Média de Movimentações: 72.90346
-Média de tempo: 0.0011704819 s
+Média de Comparações: 35.90111
+Média de Movimentações: 9.738779
+Média de tempo: 6.9698796E-4 s
 
