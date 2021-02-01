@@ -67,14 +67,14 @@ public class Main {
         }
         arquivo_saida.append("Totais MergeSort:\n\n");
         arquivo_saida.append("Tamanho: ").append(tam).append("\n");
-        arquivo_saida.append("Comparações: ").append((float)media_comparacoes).append("\n");
-        arquivo_saida.append("Movimentações: ").append((float)media_movimentacoes).append("\n");
+        arquivo_saida.append("Comparações: ").append((float) media_comparacoes).append("\n");
+        arquivo_saida.append("Movimentações: ").append((float) media_movimentacoes).append("\n");
         arquivo_saida.append("Tempos: ").append((float) media_tempo / 1000).append(" s").append("\n\n");
 
         arquivo_saida.append("Médias MergeSort por Registro:\n\n");
-        arquivo_saida.append("Média de Comparações: ").append((float)media_comparacoes / tam).append("\n");
-        arquivo_saida.append("Média de Movimentações: ").append((float)media_movimentacoes / tam).append("\n");
-        arquivo_saida.append("Média de tempo: ").append((float)media_tempo / tam).append(" s\n\n");
+        arquivo_saida.append("Média de Comparações: ").append((float) media_comparacoes / tam).append("\n");
+        arquivo_saida.append("Média de Movimentações: ").append((float) media_movimentacoes / tam).append("\n");
+        arquivo_saida.append("Média de tempo: ").append((float) media_tempo / tam).append(" s\n\n");
 
         comparacoes.clear();
         movimentacoes.clear();
@@ -108,24 +108,66 @@ public class Main {
         }
         arquivo_saida.append("Totais QuickSort:\n\n");
         arquivo_saida.append("Tamanho: ").append(tam).append("\n");
-        arquivo_saida.append("Comparações: ").append((float)media_comparacoes).append("\n");
-        arquivo_saida.append("Movimentações: ").append((float)media_movimentacoes).append("\n");
+        arquivo_saida.append("Comparações: ").append((float) media_comparacoes).append("\n");
+        arquivo_saida.append("Movimentações: ").append((float) media_movimentacoes).append("\n");
         arquivo_saida.append("Tempos: ").append((float) media_tempo / 1000).append(" s").append("\n\n");
 
         arquivo_saida.append("Médias QuickSort por Registro:\n\n");
-        arquivo_saida.append("Média de Comparações: ").append((float)media_comparacoes / tam).append("\n");
-        arquivo_saida.append("Média de Movimentações: ").append((float)media_movimentacoes / tam).append("\n");
-        arquivo_saida.append("Média de tempo: ").append((float)media_tempo / tam).append(" s\n\n");
+        arquivo_saida.append("Média de Comparações: ").append((float) media_comparacoes / tam).append("\n");
+        arquivo_saida.append("Média de Movimentações: ").append((float) media_movimentacoes / tam).append("\n");
+        arquivo_saida.append("Média de tempo: ").append((float) media_tempo / tam).append(" s\n\n");
 
         comparacoes.clear();
         movimentacoes.clear();
         tempos.clear();
 
         //heapSort
-        save("saida", arquivo_saida);
+        arquivo_saida.append("Resultados HeapSort:\n\n");
+        for (int tamanho : tamanhos) {
+            Experimentos exp = new Experimentos(dados, tamanho);
+            exp.executeHeapSort();
+
+            comparacoes.add(exp.getComparacoes());
+            movimentacoes.add(exp.getMovimentacoes());
+            tempos.add(exp.getTempo());
+
+            arquivo_saida.append("Tamanho: ").append(tamanho).append("\n");
+            arquivo_saida.append("Comparações: ").append(exp.getComparacoes()).append("\n");
+            arquivo_saida.append("Movimentações: ").append(exp.getMovimentacoes()).append("\n");
+            arquivo_saida.append("Tempo de Execução: ").append((float) exp.getTempo() / 1000).append(" s\n\n");
+        }
+        media_comparacoes = 0;
+        media_movimentacoes = 0;
+        media_tempo = 0;
+        tam = 0;
+
+        for (int i = 0; i < tamanhos.length; i++) {
+            media_comparacoes += comparacoes.get(i);
+            media_movimentacoes += movimentacoes.get(i);
+            media_tempo += tempos.get(i);
+            tam += tamanhos[i];
+        }
+        arquivo_saida.append("Totais HeapSort:\n\n");
+        arquivo_saida.append("Tamanho: ").append(tam).append("\n");
+        arquivo_saida.append("Comparações: ").append((float) media_comparacoes).append("\n");
+        arquivo_saida.append("Movimentações: ").append((float) media_movimentacoes).append("\n");
+        arquivo_saida.append("Tempos: ").append((float) media_tempo / 1000).append(" s").append("\n\n");
+
+        arquivo_saida.append("Médias HeapSort por Registro:\n\n");
+        arquivo_saida.append("Média de Comparações: ").append((float) media_comparacoes / tam).append("\n");
+        arquivo_saida.append("Média de Movimentações: ").append((float) media_movimentacoes / tam).append("\n");
+        arquivo_saida.append("Média de tempo: ").append((float) media_tempo / tam).append(" s\n\n");
+
+        comparacoes.clear();
+        movimentacoes.clear();
+        tempos.clear();
+
         long tempo_final = System.currentTimeMillis() - tempo_inicial;
         arquivo_saida.append("Tempo Total: ").append((float) tempo_final / 1000).append("s\n\n");
-        System.out.println("Time elapsed: " + tempo_final / 1000 + " seconds");
+
+        save("saida", arquivo_saida);
+
+        System.out.println("Tempo Total: " + tempo_final / 1000 + " s\n");
     }
 
     public static void save(String nome_arquivo, StringBuilder arquivo) throws IOException {
@@ -138,26 +180,3 @@ public class Main {
     }
 
 }
-// Teste futuross
-//        String str_a = "ab";
-//        String str_b = "ab";
-//        String str_c = "z";
-//        String str_d = "f";
-//
-//        Comparador comparador = new Comparador();
-//        System.out.println(comparador.comparar(str_a+str_c, str_b+str_d, "<"));
-
-//        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-//        Date dt_a = dt.parse("2021-04-07");
-//        Date dt_b = dt.parse("2021-05-06");
-//
-//        int int_a = 1;
-//        int int_b = 2;
-//
-//        String str_a = "ab";
-//        String str_b = "bc";
-//
-//        Comparador comparador = new Comparador();
-//        System.out.println(comparador.comparar(dt_a, dt_b, ">"));
-//        System.out.println(comparador.comparar(int_a, int_b, "<"));
-//        System.out.println(comparador.comparar(str_a, str_b, "<="));

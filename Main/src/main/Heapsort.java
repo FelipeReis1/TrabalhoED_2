@@ -6,6 +6,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -14,45 +15,46 @@ import java.util.Collections;
  */
 public class Heapsort {
 
+    public ArrayList<DadosCovid.Entrada> resultados = new ArrayList<DadosCovid.Entrada>();
     private static long comparacao = 0;
     private static long movimentacao = 0;
 
-    protected void sort(ArrayList<DadosCovid.Entrada> entradas, Comparadores sortBy) {
-        int raiz = 0;
-        int n = entradas.size();
-        sort(entradas, raiz, n, sortBy);
-    }
+    public void sort(ArrayList<DadosCovid.Entrada> arr, Comparadores sortBy) {
+        int n = arr.size();
 
-    protected void sort(ArrayList<DadosCovid.Entrada> entradas, int raiz, int n, Comparadores sortBy) {
-        
-        for (int i = raiz; i < n / 2 - 1; i++) {
-            heapfy(entradas, i, entradas.size(), sortBy);
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i, sortBy);
         }
-        for (int i = n - 1; i >= 0; i--) {
-            Collections.swap(entradas, 0, i);
-            heapfy(entradas, 0, i, sortBy);
+
+        for (int i = n - 1; i > 0; i--) {
+            Collections.swap(arr, 0, i);
+            heapify(arr, i, 0, sortBy);
         }
     }
 
-    private void heapfy(ArrayList<DadosCovid.Entrada> entradas, int raiz, int n, Comparadores sortBy) {
-        int max = raiz;
-        int esq = 2 * raiz + 1;
-        int dir = 2 * raiz + 2;
+    void heapify(ArrayList<DadosCovid.Entrada> arr, int n, int i, Comparadores sortBy) {
+        int largest = i; 
+        int l = 2 * i + 1; 
+        int r = 2 * i + 2; 
 
         comparacao++;
-        if ((esq < n) && !sortBy.comparar(entradas.get(esq), entradas.get(raiz))) {
-            max = esq;
+        if (l < n && sortBy.comparar(arr.get(l), arr.get(largest))) {
+            largest = l;
         }
+
         comparacao++;
-        if ((dir < n) && !sortBy.comparar(entradas.get(dir), entradas.get(raiz))) {
-            max = dir;
+        if (r < n && sortBy.comparar(arr.get(r), arr.get(largest))) {
+
+            largest = r;
         }
-        if (max != raiz) {
+
+        comparacao++;
+        if (largest != i) {
             movimentacao++;
-            Collections.swap(entradas, max, raiz);
-            heapfy(entradas, max, n, sortBy);
-        }
+            Collections.swap(arr, i, largest);
 
+            heapify(arr, n, largest, sortBy);
+        }
     }
 
     public long getComparacao() {

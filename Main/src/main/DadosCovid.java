@@ -97,7 +97,7 @@ public class DadosCovid {
         this.entradas = new ArrayList<>();
         Carregamento();
         PreProcessamento();
-        Save(this.dataset.split("\\.")[0] + "_processado.csv");
+        Save("brazil_covid19_cities_processado.csv");
 
     }
 
@@ -129,6 +129,7 @@ public class DadosCovid {
 
         long tempoInicial = System.currentTimeMillis();
 
+        CompareEstadoHS compara_estado_hs = new CompareEstadoHS();
         CompareEstado compara_estado = new CompareEstado();
         CompareCidade compara_cidade = new CompareCidade();
         CompareDatas compara_dt_confirmacao = new CompareDatas();
@@ -136,10 +137,19 @@ public class DadosCovid {
         System.out.println("Ordenando por par Estado-Cidade");
 
         MergeSort MS = new MergeSort();
-//        Heapsort MS = new Heapsort();
+//        Heapsort HS = new Heapsort();
 //        Quicksort MS = new Quicksort();
 
+//Teste para as funcao de heapsort
+//        HS.sort(this.entradas, compara_estado_hs);
+//        for(Entrada resultado: Heapsort.resultados){
+//            
+//        }
+//        for (Entrada entrada : entradas) {
+//            System.out.println(entrada.getEstado());
+//        }
         MS.sort(this.entradas, compara_estado);
+        System.out.println("Dados ordenados por par Estado-Cidade");
         for (int i = 0; i < this.entradas.size(); i++) {
             int j = i + 1;
             while ((j < this.entradas.size()) && this.entradas.get(j).getEstado().equals(this.entradas.get(i).getEstado())) {
@@ -150,8 +160,6 @@ public class DadosCovid {
             }
             i = j;
         }
-        System.out.println("Dados ordenados por par Estado-Cidade");
-
         System.out.println("Ordenando por data de confirmação");
         for (int i = 0; i < this.entradas.size(); i++) {
             int j = i + 1;
@@ -165,7 +173,6 @@ public class DadosCovid {
             i = j - 1;
         }
         System.out.println("Dados ordenados por data de confirmação");
-
         System.out.println("Calculando casos Diários");
         for (int i = 0; i < this.entradas.size(); i++) {
             int j = i + 1;

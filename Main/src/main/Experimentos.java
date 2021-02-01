@@ -36,7 +36,7 @@ class Experimentos {
         movimentacoes = 0;
         long startTime = System.currentTimeMillis();
         CompareNumeroCasos compara_numero_casos = new CompareNumeroCasos();
-        System.out.println("Experimenting QuickSort for N=" + this.N + "\n\n");
+        System.out.println("Testando QuickSort para N=" + this.N + "\n\n");
 
         QS.sort(this.amostras, compara_numero_casos);
         comparacoes = QS.getComparacao();
@@ -48,11 +48,20 @@ class Experimentos {
     }
 
     public void executeHeapSort() {
+        Heapsort HS = new Heapsort();
         comparacoes = 0;
         movimentacoes = 0;
         long startTime = System.currentTimeMillis();
-        // heapsort aqui
+        CompareNumeroCasosHS compara_numero_casos = new CompareNumeroCasosHS();
+        System.out.println("Testando HeapSort para N=" + this.N + "\n\n");
+
+        HS.sort(this.amostras, compara_numero_casos);
+        comparacoes = HS.getComparacao();
+        movimentacoes = HS.getMovimentacao();
+        System.out.println("Comparações: " + this.comparacoes);
+        System.out.println("Movimentações: " + this.movimentacoes);
         tempoFinal = System.currentTimeMillis() - startTime;
+        System.out.println("Tempo: " + (float) (this.tempoFinal) / 1000.0 + " segundos\n\n");
     }
 
     public void executeMergeSort() {
@@ -62,7 +71,7 @@ class Experimentos {
         long startTime = System.currentTimeMillis();
         CompareNumeroCasos compara_numero_casos = new CompareNumeroCasos();
 
-        System.out.println("Experimenting MergeSort for N=" + this.N + "\n\n");
+        System.out.println("Testando MergeSort para N=" + this.N + "\n\n");
 
         MSE.sort(this.amostras, compara_numero_casos);
         comparacoes = MSE.getComparacao();

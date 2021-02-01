@@ -50,24 +50,6 @@ public class Quicksort {
         vetor.set(inicio, vetor.get(f));
         vetor.set(f, pivo);
         return f;
-
-//        int pivo = vetor[inicio];
-//        int i = inicio + 1, f = fim;
-//        while (i <= f) {
-//            if (vetor[i] <= pivo) {
-//                i++;
-//            } else if (pivo < vetor[f]) {
-//                f--;
-//            } else {
-//                int troca = vetor[i];
-//                vetor[i] = vetor[f];
-//                vetor[f] = troca;
-//                i++;
-//                f--;
-//            }
-//        }
-//        vetor[inicio] = vetor[f];
-//        vetor[f] = pivo;
     }
 
     public long getComparacao() {

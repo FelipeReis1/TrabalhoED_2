@@ -13,55 +13,13 @@ import java.util.Date;
  */
 public class Comparador {
 
-    protected boolean comparar(int a, int b, String simb) {
-        if (simb == "==" || simb == "=") {
-            return (a == b);
-        } else if (simb == ">") {
-            return (a > b);
-        } else if (simb == "<") {
-            return (a < b);
-        } else if (simb == ">=") {
-            return (a >= b);
-        } else if (simb == "<=") {
-            return (a <= b);
-        }
-        return false;
-    }
-
-    protected boolean comparar(String a, String b, String simb) {
-        if (simb == "==" || simb == "=") {
-            return (a.compareToIgnoreCase(b) == 0);
-        } else if (simb == ">") {
-            return (a.compareToIgnoreCase(b) > 0);
-        } else if (simb == "<") {
-            return (a.compareToIgnoreCase(b) < 0);
-        } else if (simb == ">=") {
-            return (a.compareToIgnoreCase(b) == 0 || a.compareToIgnoreCase(b) > 0);
-        } else if (simb == "<=") {
-            return (a.compareToIgnoreCase(b) == 0 || a.compareToIgnoreCase(b) < 0);
-        }
-        return false;
-    }
-
-    protected boolean comparar(Date a, Date b, String simb) {
-        if (simb == "==" || simb == "=") {
-            return (a.equals(b));
-        } else if (simb == ">") {
-            return (a.after(b));
-        } else if (simb == "<") {
-            return (a.before(b));
-        } else if (simb == ">=") {
-            return (a.equals(b) || a.after(b));
-        } else if (simb == "<=") {
-            return (a.equals(b) || a.before(b));
-        }
-        return false;
-    }
 }
 
 interface Comparadores {
 
     public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b);
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b);
 }
 
 class CompareEstado implements Comparadores {
@@ -69,8 +27,24 @@ class CompareEstado implements Comparadores {
     Comparador comparador = new Comparador();
 
     public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
-//        return comparador.comparar(a.getEstado() + a.getCidade(), b.getEstado() + a.getCidade(), "<");
         return a.getEstado().compareTo(b.getEstado()) < 0;
+    }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getEstado().compareTo(b.getEstado()) == 0;
+    }
+}
+
+class CompareEstadoHS implements Comparadores {
+
+    Comparador comparador = new Comparador();
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getEstado().compareTo(b.getEstado()) > 0;
+    }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getEstado().compareTo(b.getEstado()) == 0;
     }
 }
 
@@ -79,12 +53,20 @@ class CompareCidade implements Comparadores {
     public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
         return a.getCidade().compareTo(b.getCidade()) < 0;
     }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getCidade().compareTo(b.getCidade()) == 0;
+    }
 }
 
 class CompareDatas implements Comparadores {
 
     public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
         return a.getDtConfirmacao().before(b.getDtConfirmacao());
+    }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return a.getDtConfirmacao().equals(b.getDtConfirmacao());
     }
 }
 
@@ -93,15 +75,19 @@ class CompareNumeroCasos implements Comparadores {
     public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
         return (a.getNumeroCasos() < b.getNumeroCasos());
     }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return (a.getNumeroCasos() == b.getNumeroCasos());
+    }
 }
 
-//
-//class CompareEstadoCidade implements Comparadores {
-//
-//    Comparador comparador = new Comparador();
-//
-//    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
-////        return comparador.comparar(a.getEstado() + a.getCidade(), b.getEstado() + a.getCidade(), "<");
-//        return a.getEstado().compareTo(b.getEstado()) < 0;
-//    }
-//}
+class CompareNumeroCasosHS implements Comparadores {
+
+    public Boolean comparar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return (a.getNumeroCasos() > b.getNumeroCasos());
+    }
+
+    public Boolean igualar(DadosCovid.Entrada a, DadosCovid.Entrada b) {
+        return (a.getNumeroCasos() == b.getNumeroCasos());
+    }
+}
